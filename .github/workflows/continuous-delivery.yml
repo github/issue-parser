@@ -1,0 +1,77 @@
+name: Continuous Delivery
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+
+    # Only run this job if one of the following is true:
+    # - It was run manually.
+    # - A PR was merged that was not from Dependabot or a fork.
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event.pull_request.merged == true &&
+        startsWith(github.head_ref, 'dependabot/') == false &&
+        github.event.pull_request.head.repo.fork == false
+      )
+
+    outputs:
+      tag: v${{ steps.tag.outputs.version }}
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version-file: .node-version
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install Dependencies
+        id: install
+        run: npm ci
+
+      - name: Test
+        id: test
+        run: npm run ci-test
+
+      - name: Tag
+        id: tag
+        uses: issue-ops/semver@v2
+        with:
+          manifest-path: package.json
+          workspace: ${{ github.workspace }}
+          ref: main
+
+      - name: Publish
+        id: publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm whoami
+          npm publish --ignore-scripts --access public
+
+      - name: Create Release
+        id: release
+        uses: issue-ops/releaser@v2
+        with:
+          tag: v${{ steps.tag.outputs.version }}
