@@ -1,0 +1,22 @@
+{
+  "name": "this-thing",
+  "nickname": "thing",
+  "color": ["blue"],
+  "shape": ["square"],
+  "sounds": ["re", "mi"],
+  "topics": [],
+  "description": "This is a description.\n\nIt has multiple lines.\n\nIt's pretty cool!",
+  "notes": "- Note\n- Another note\n- Lots of notes",
+  "code": "const thing = new Thing()\nthing.doThing()",
+  "code-string": "thing.toString()",
+  "is-thing": {
+    "selected": ["Yes"],
+    "unselected": ["No"]
+  },
+  "is-thing-useful": {
+    "selected": ["Sometimes"],
+    "unselected": ["Yes", "No"]
+  },
+  "read-team": "IssueOps-Demo-Readers",
+  "write-team": "IssueOps-Demo-Writers"
+}

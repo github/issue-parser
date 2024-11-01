@@ -1,0 +1,169 @@
+name: Example Request
+description: Submit an example request
+title: '[Request] Example'
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Example Request
+
+        This is an example request.
+
+        ## Instructions
+
+        1. Fill out the form below.
+        2. Submit the request.
+        3. Wait for the request to be processed.
+  - type: input
+    id: name
+    attributes:
+      label: The Name of the Thing
+      description: The name of the thing you want to create.
+      placeholder: this-is-the-thing
+    validations:
+      required: true
+  - type: input
+    id: nickname
+    attributes:
+      label: The Nickname of the Thing
+      description: (Optional) The nickname of the thing you want to create.
+      placeholder: the-thing
+    validations:
+      required: false
+  - type: dropdown
+    id: color
+    attributes:
+      label: The Color of the Thing
+      description: The color of the thing you want to create.
+      multiple: false
+      options:
+        - blue
+        - black
+        - green
+        - orange
+        - purple
+        - red
+        - white
+        - yellow
+    validations:
+      required: true
+  - type: dropdown
+    id: shape
+    attributes:
+      label: The Shape of the Thing
+      description: (Optional) The shape of the thing you want to create.
+      multiple: false
+      options:
+        - circle
+        - square
+        - triangle
+    validations:
+      required: false
+  - type: dropdown
+    id: sounds
+    attributes:
+      label: The Sounds of the Thing
+      description: (Multiple) The sounds(s) the thing makes.
+      multiple: true
+      options:
+        - do
+        - re
+        - mi
+        - fa
+        - so
+        - la
+        - ti
+    validations:
+      required: true
+  - type: dropdown
+    id: topics
+    attributes:
+      label: The Topics About the Thing
+      description: |
+        (Multiple / Optional) The topic(s) about the thing you want to create.
+      multiple: true
+      options:
+        - cool
+        - fun
+        - interesting
+        - neat
+    validations:
+      required: false
+  - type: textarea
+    id: description
+    attributes:
+      label: The Description of the Thing
+      description: The description of the thing you want to create.
+      placeholder: This is a description of the thing.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: The Notes About the Thing
+      description: (Optional) The notes about the thing you want to create.
+      placeholder: These are notes about the thing.
+    validations:
+      required: false
+  - type: textarea
+    id: code
+    attributes:
+      label: The Code of the Thing
+      description: The code of the thing you want to create.
+      render: js
+      placeholder: |
+        const thing = new Thing()
+        thing.doSomething()
+    validations:
+      required: true
+  - type: textarea
+    id: code-string
+    attributes:
+      label: The String Method of the Code of the Thing
+      description: (Optional) The method to return the thing as a string.
+      render: js
+      placeholder: |
+        thing.toString()
+    validations:
+      required: false
+  - type: checkboxes
+    id: is-thing
+    attributes:
+      label: Is the Thing a Thing?
+      description: Is the thing a thing?
+      options:
+        - label: 'Yes'
+          required: true
+        - label: 'No'
+          required: false
+  - type: checkboxes
+    id: is-thing-useful
+    attributes:
+      label: Is the Thing Useful?
+      description: (Optional) Is the thing a useful thing?
+      options:
+        - label: 'Yes'
+          required: false
+        - label: Sometimes
+          required: false
+        - label: 'No'
+          required: false
+  - type: input
+    id: read-team
+    attributes:
+      label: Read Team
+      description: |
+        The read-only GitHub Team (hint: `IssueOps-Demo-Readers`).
+      placeholder: IssueOps-Demo-Readers
+    validations:
+      required: true
+  - type: input
+    id: write-team
+    attributes:
+      label: Write Team
+      description: |
+        The write-access GitHub Team (hint: `IssueOps-Demo-Writers`).
+      placeholder: IssueOps-Demo-Writers
+    validations:
+      required: true

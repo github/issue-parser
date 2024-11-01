@@ -1,0 +1,8 @@
+{
+  "bad": {
+    "label": "This isn't a good issue",
+    "type": "input",
+    "required": true
+  },
+  "empty": { "label": "Empty header", "type": "input", "required": false }
+}

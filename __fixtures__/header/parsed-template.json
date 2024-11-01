@@ -1,0 +1,7 @@
+{
+  "name": {
+    "label": "The Name of the Thing",
+    "type": "input",
+    "required": true
+  }
+}

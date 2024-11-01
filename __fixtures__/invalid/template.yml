@@ -1,0 +1,21 @@
+name: Example Request
+description: Submit an example request
+title: '[Request] Example'
+
+body:
+  - type: input
+    id: bad
+    attributes:
+      label: This isn't a good issue
+      description: A description goes here...
+      placeholder: this-is-bad
+    validations:
+      required: true
+  - type: input
+    id: empty
+    attributes:
+      label: Empty header
+      description: (Optional) This won't work
+      placeholder: empty-stuff
+    validations:
+      required: false

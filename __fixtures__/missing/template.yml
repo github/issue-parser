@@ -1,0 +1,55 @@
+name: Example Request
+description: Submit an example request
+title: '[Request] Example'
+
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Model Name
+      description: The name of the model.
+    validations:
+      required: true
+  - type: input
+    id: description
+    attributes:
+      label: Model Description
+      description: (Optional) The description of the model.
+    validations:
+      required: false
+  - type: dropdown
+    id: id
+    attributes:
+      label: Ersilia ID
+      description: The Ersilia ID
+      multiple: false
+      options:
+        - abc123
+        - def456
+    validations:
+      required: true
+  - type: textarea
+    id: publication
+    attributes:
+      label: Publication
+      description: The publication.
+    validations:
+      required: false
+  - type: dropdown
+    id: code
+    attributes:
+      label: Code
+      description: The code.
+      multiple: false
+      options:
+        - 123abc
+        - 456def
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: The license of the model.
+    validations:
+      required: true

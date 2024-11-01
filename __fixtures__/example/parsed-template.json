@@ -1,0 +1,90 @@
+{
+  "name": {
+    "label": "The Name of the Thing",
+    "type": "input",
+    "required": true
+  },
+  "nickname": {
+    "label": "The Nickname of the Thing",
+    "type": "input",
+    "required": false
+  },
+  "color": {
+    "label": "The Color of the Thing",
+    "type": "dropdown",
+    "required": true,
+    "multiple": false,
+    "options": [
+      "blue",
+      "black",
+      "green",
+      "orange",
+      "purple",
+      "red",
+      "white",
+      "yellow"
+    ]
+  },
+  "shape": {
+    "label": "The Shape of the Thing",
+    "type": "dropdown",
+    "required": false,
+    "multiple": false,
+    "options": ["circle", "square", "triangle"]
+  },
+  "sounds": {
+    "label": "The Sounds of the Thing",
+    "type": "dropdown",
+    "required": true,
+    "multiple": true,
+    "options": ["do", "re", "mi", "fa", "so", "la", "ti"]
+  },
+  "topics": {
+    "label": "The Topics About the Thing",
+    "type": "dropdown",
+    "required": false,
+    "multiple": true,
+    "options": ["cool", "fun", "interesting", "neat"]
+  },
+  "description": {
+    "label": "The Description of the Thing",
+    "type": "textarea",
+    "required": true
+  },
+  "notes": {
+    "label": "The Notes About the Thing",
+    "type": "textarea",
+    "required": false
+  },
+  "code": {
+    "label": "The Code of the Thing",
+    "type": "textarea",
+    "required": true
+  },
+  "code-string": {
+    "label": "The String Method of the Code of the Thing",
+    "type": "textarea",
+    "required": false
+  },
+  "is-thing": {
+    "label": "Is the Thing a Thing?",
+    "type": "checkboxes",
+    "required": false,
+    "options": [
+      { "label": "Yes", "required": true },
+      { "label": "No", "required": false }
+    ]
+  },
+  "is-thing-useful": {
+    "label": "Is the Thing Useful?",
+    "type": "checkboxes",
+    "required": false,
+    "options": [
+      { "label": "Yes", "required": false },
+      { "label": "Sometimes", "required": false },
+      { "label": "No", "required": false }
+    ]
+  },
+  "read-team": { "label": "Read Team", "type": "input", "required": true },
+  "write-team": { "label": "Write Team", "type": "input", "required": true }
+}

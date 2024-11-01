@@ -1,0 +1,13 @@
+name: Example Request
+description: Submit an example request
+title: '[Request] Example'
+
+body:
+  - type: input
+    id: name
+    attributes:
+      label: The Name of the Thing
+      description: The name of the thing you want to create.
+      placeholder: this-is-the-thing
+    validations:
+      required: true
