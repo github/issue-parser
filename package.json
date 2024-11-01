@@ -1,5 +1,5 @@
 {
-  "name": "issue-parser",
+  "name": "@github/issue-parser",
   "description": "Convert issue form responses to JSON",
   "version": "1.0.0",
   "author": "Nick Alteen <ncalteen@github.com>",
