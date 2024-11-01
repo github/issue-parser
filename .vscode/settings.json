@@ -1,0 +1,17 @@
+{
+  "editor.inlineSuggest.enabled": true,
+  "editor.rulers": [80],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "html.format.templating": true,
+  "markdown.extension.list.indentationSize": "adaptive",
+  "markdown.extension.italic.indicator": "_",
+  "markdown.extension.orderedList.marker": "one",
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-issue-config.json": "file:///Users/ncalteen/Workspace/github/issue-parser/.github/ISSUE_TEMPLATE/config.yml"
+  }
+}
