@@ -16,13 +16,9 @@ export function isEmptyResponse(value: string): boolean {
 }
 
 /**
- * Formats an input name to a snake-case string.
+ * Formats an input name to a slugified string.
  *
- * - Removes leading and trailing whitespace
- * - Converts to lowercase
- * - Replaces spaces with underscores
- * - Replaces non-alphanumeric characters with underscores
- * - Replaces multiple consecutive underscores with a single underscore
+ * @param name Name to Format
  */
 export function formatKey(name: string): string {
   return name
@@ -39,7 +35,7 @@ export function formatKey(name: string): string {
 export function formatValue(
   input: string,
   field: FormattedField
-): string | string[] | Checkboxes {
+): Checkboxes | string[] | string | undefined {
   // Regex to check if a checkbox is checked.
   const checkedExp: RegExp = /^-\s\[x\]\s/im
 
@@ -57,7 +53,7 @@ export function formatValue(
     case FieldType.TEXTAREA:
       // Return empty string if no response was provided. Otherwise, return the
       // formatted response.
-      return isEmptyResponse(value) ? '' : value
+      return isEmptyResponse(value) ? undefined : value
     case FieldType.DROPDOWN:
       // Return empty list if no response was provided. Otherwise, split by
       // commas and return the list.

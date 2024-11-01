@@ -18,14 +18,19 @@ import type {
  *
  * @param issue Issue Body (Markdown String)
  * @param template Issue Form Template (YAML String)
+ * @param options Additional Processing Options
  * @returns Parsed Issue Body
  */
-export function parseIssue(issue: string, template?: string): ParsedBody {
+export function parseIssue(
+  issue: string,
+  template?: string,
+  options?: { slugify?: boolean }
+): ParsedBody {
   const parsedTemplate: { [key: string]: FormattedField } =
     parseTemplate(template)
 
   const parsedIssue: {
-    [key: string]: string | string[] | Checkboxes
+    [key: string]: Checkboxes | string[] | string | undefined
   } = {}
 
   // Match the sections of the issue body
@@ -33,16 +38,21 @@ export function parseIssue(issue: string, template?: string): ParsedBody {
   const matches = issue.matchAll(regexp)
 
   for (const match of matches) {
-    let value: string | string[] | Checkboxes | null = match.groups?.value || ''
+    let value: Checkboxes | string[] | string | undefined =
+      match.groups?.value || undefined
     let key: string | undefined = match.groups?.key || ''
 
     // Skip malformed sections
-    if (key === '' || value === '') continue
+    if (key === undefined || key === '' || value === undefined || value === '')
+      continue
+
+    // If the slugify option is enabled, format the key.
+    if (options?.slugify) key = formatKey(key)
 
     // If the form template was provided, use the key from there instead of the
     // heading in the issue body.
     for (const [k, v] of Object.entries(parsedTemplate)) {
-      if (v.label === key) {
+      if (formatKey(v.label) === key || v.label === key) {
         key = k
         break
       }

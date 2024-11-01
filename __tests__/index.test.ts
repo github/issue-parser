@@ -100,6 +100,17 @@ describe('parseIssue()', () => {
     const result = parseIssue(issue, template)
     expect(result).toEqual(expected)
   })
+
+  it('Parses an issue without a corresponding template', () => {
+    const issue = fs.readFileSync('__fixtures__/no-template/issue.md', 'utf8')
+
+    const expected = JSON.parse(
+      fs.readFileSync('__fixtures__/no-template/parsed-issue.json', 'utf8')
+    )
+
+    const result = parseIssue(issue, undefined, { slugify: true })
+    expect(result).toEqual(expected)
+  })
 })
 
 describe('parseTemplate()', () => {

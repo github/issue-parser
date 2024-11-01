@@ -57,7 +57,7 @@ describe('formatValue()', () => {
         type: 'input',
         required: true
       })
-    ).toBe('')
+    ).toBeUndefined()
   })
 
   it('Handles None', () => {

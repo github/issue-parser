@@ -112,5 +112,5 @@ export interface Checkboxes {
 
 /** Parsed Issue Body */
 export interface ParsedBody {
-  [key: string]: string | string[] | Checkboxes
+  [key: string]: Checkboxes | string[] | string | undefined
 }
