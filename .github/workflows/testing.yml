@@ -17,6 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           node-version-file: .node-version
           registry-url: https://registry.npmjs.org/
@@ -26,6 +28,7 @@ jobs:
           npm version ${TAG_NAME} --git-tag-version=false
         env:
           TAG_NAME: ${{ github.event.inputs.tag_name }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: npm whoami; npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
