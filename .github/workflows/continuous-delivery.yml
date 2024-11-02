@@ -41,6 +41,8 @@ jobs:
       - name: Setup Node.js
         id: setup-node
         uses: actions/setup-node@v4
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           cache: npm
           node-version-file: .node-version
