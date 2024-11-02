@@ -1,0 +1,27 @@
+name: Publish to NPM public registry on release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+      - run: npm ci
+      - run: |
+          echo "Publishing $TAG_NAME"
+          npm version ${TAG_NAME} --git-tag-version=false
+        env:
+          TAG_NAME: ${{github.event.release.tag_name}}
+      - run: npm whoami; npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
