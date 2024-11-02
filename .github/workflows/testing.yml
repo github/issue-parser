@@ -21,7 +21,7 @@ jobs:
           echo "Publishing $TAG_NAME"
           npm version ${TAG_NAME} --git-tag-version=false
         env:
-          TAG_NAME: ${{github.event.release.tag_name}}
+          TAG_NAME: v1.0.0
       - run: npm whoami; npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
