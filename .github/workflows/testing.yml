@@ -2,6 +2,11 @@ name: Publish to NPM public registry on release
 
 on:
   workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name'
+        required: true
+        default: 'v1.0.1'
 
 permissions:
   contents: read
@@ -21,7 +26,7 @@ jobs:
           echo "Publishing $TAG_NAME"
           npm version ${TAG_NAME} --git-tag-version=false
         env:
-          TAG_NAME: v1.0.0
+          TAG_NAME: ${{ github.event.inputs.tag_name }}
       - run: npm whoami; npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
