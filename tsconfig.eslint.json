@@ -10,6 +10,7 @@
     "__mocks__",
     "__tests__",
     "src",
+    "eslint.config.mjs",
     "jest.config.ts",
     "rollup.config.ts"
   ]
