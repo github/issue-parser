@@ -46,6 +46,7 @@ jobs:
         with:
           cache: npm
           node-version-file: .node-version
+          registry-url: https://registry.npmjs.org/
 
       - name: Install Dependencies
         id: install
@@ -66,7 +67,7 @@ jobs:
       - name: Publish
         id: publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
           npm whoami
           npm publish --ignore-scripts --access public
