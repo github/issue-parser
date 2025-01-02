@@ -1729,10 +1729,7 @@ function stringifyPair({ key, value }, ctx, onComment, onChompKeep) {
 
 function warn(logLevel, warning) {
     if (logLevel === 'debug' || logLevel === 'warn') {
-        if (typeof process !== 'undefined' && process.emitWarning)
-            process.emitWarning(warning);
-        else
-            console.warn(warning);
+        console.warn(warning);
     }
 }
 
@@ -2506,10 +2503,7 @@ const binary = {
      *   document.querySelector('#photo').src = URL.createObjectURL(blob)
      */
     resolve(src, onError) {
-        if (typeof Buffer === 'function') {
-            return Buffer.from(src, 'base64');
-        }
-        else if (typeof atob === 'function') {
+        if (typeof atob === 'function') {
             // On IE 11, atob() can't handle newlines
             const str = atob(src.replace(/[\n\r]/g, ''));
             const buffer = new Uint8Array(str.length);
@@ -2525,13 +2519,7 @@ const binary = {
     stringify({ comment, type, value }, ctx, onComment, onChompKeep) {
         const buf = value; // checked earlier by binary.identify()
         let str;
-        if (typeof Buffer === 'function') {
-            str =
-                buf instanceof Buffer
-                    ? buf.toString('base64')
-                    : Buffer.from(buf.buffer).toString('base64');
-        }
-        else if (typeof btoa === 'function') {
+        if (typeof btoa === 'function') {
             let s = '';
             for (let i = 0; i < buf.length; ++i)
                 s += String.fromCharCode(buf[i]);
@@ -3660,7 +3648,7 @@ function resolveProps(tokens, { flow, indicator, next, offset, onError, parentIn
                 if (atNewline) {
                     if (comment)
                         comment += token.source;
-                    else
+                    else if (!found || indicator !== 'seq-item-ind')
                         spaceBefore = true;
                 }
                 else
