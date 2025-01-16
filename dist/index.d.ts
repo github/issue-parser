@@ -25,3 +25,5 @@ export declare function parseIssue(issue: string, template?: string, options?: {
 export declare function parseTemplate(template?: string): {
     [key: string]: FormattedField;
 };
+export { FieldType } from './enums.js';
+export type { Checkboxes, CheckboxesField, DropdownField, FormattedField, InputField, ParsedBody } from './types.js';

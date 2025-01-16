@@ -7609,5 +7609,5 @@ function parseTemplate(template) {
     return parsedTemplate;
 }
 
-export { parseIssue, parseTemplate };
+export { FieldType, parseIssue, parseTemplate };
 //# sourceMappingURL=index.js.map
