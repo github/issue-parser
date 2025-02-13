@@ -1,0 +1,22 @@
+{
+  "name": "this-thing",
+  "nickname": "thing",
+  "color": ["blue"],
+  "shape": ["square"],
+  "sounds": ["re", "mi"],
+  "topics": [],
+  "description": "This is a description.\n\nIt has multiple lines.\n\nIt's pretty cool!\n\n### This is an extra header someone included in the previous field\n\nIf the form template is included, this will be added to the parsed\n`description` field.\n\nOtherwise, a new field should be added.",
+  "notes": "- Note\n- Another note\n- Lots of notes",
+  "code": "const thing = new Thing()\nthing.doThing()",
+  "code-string": "thing.toString()",
+  "is-thing": {
+    "selected": ["Yes"],
+    "unselected": ["No"]
+  },
+  "is-thing-useful": {
+    "selected": ["Sometimes"],
+    "unselected": ["Yes", "No"]
+  },
+  "read-team": "IssueOps-Demo-Readers",
+  "write-team": "IssueOps-Demo-Writers"
+}

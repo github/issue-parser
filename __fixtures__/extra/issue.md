@@ -1,21 +1,72 @@
-### Model Name
+### The Name of the Thing
 
-### Model Description
+this-thing
 
-who's molecule is this? (we don't know)
+### The Nickname of the Thing
 
-### Ersilia ID
+thing
 
-None
+### The Color of the Thing
 
-### This is an extra field
+blue
 
-The following link is just an example:
+### The Shape of the Thing
 
-`www.example.com`
+square
 
-### Code
+### The Sounds of the Thing
 
-None
+re, mi
 
-### License
+### The Topics About the Thing
+
+_No response_
+
+### The Description of the Thing
+
+This is a description.
+
+It has multiple lines.
+
+It's pretty cool!
+
+### This is an extra header someone included in the previous field
+
+If the form template is included, this will be added to the parsed
+`description` field.
+
+Otherwise, a new field should be added.
+
+### The Notes About the Thing
+
+- Note
+- Another note
+- Lots of notes
+
+### The Code of the Thing
+
+const thing = new Thing()
+thing.doThing()
+
+### The String Method of the Code of the Thing
+
+thing.toString()
+
+### Is the Thing a Thing?
+
+- [x] Yes
+- [ ] No
+
+### Is the Thing Useful?
+
+- [ ] Yes
+- [x] Sometimes
+- [ ] No
+
+### Read Team
+
+IssueOps-Demo-Readers
+
+### Write Team
+
+IssueOps-Demo-Writers

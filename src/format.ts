@@ -34,7 +34,7 @@ export function formatKey(name: string): string {
  */
 export function formatValue(
   input: string,
-  field: FormattedField
+  field?: FormattedField
 ): Checkboxes | string[] | string | undefined {
   // Regex to check if a checkbox is checked.
   const checkedExp: RegExp = /^-\s\[x\]\s/im

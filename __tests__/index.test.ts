@@ -77,18 +77,6 @@ describe('parseIssue()', () => {
     expect(result).toEqual(expected)
   })
 
-  it('Parses an issue with extra fields', () => {
-    const issue = fs.readFileSync('__fixtures__/extra/issue.md', 'utf8')
-    const template = fs.readFileSync('__fixtures__/extra/template.yml', 'utf8')
-
-    const expected = JSON.parse(
-      fs.readFileSync('__fixtures__/extra/parsed-issue.json', 'utf8')
-    )
-
-    const result = parseIssue(issue, template)
-    expect(result).toEqual(expected)
-  })
-
   it('Parses an issue without IDs in fields', () => {
     const issue = fs.readFileSync('__fixtures__/no-ids/issue.md', 'utf8')
     const template = fs.readFileSync('__fixtures__/no-ids/template.yml', 'utf8')
@@ -106,6 +94,32 @@ describe('parseIssue()', () => {
 
     const expected = JSON.parse(
       fs.readFileSync('__fixtures__/no-template/parsed-issue.json', 'utf8')
+    )
+
+    const result = parseIssue(issue, undefined, { slugify: true })
+    expect(result).toEqual(expected)
+  })
+
+  it('Parses an issue with extra fields with a template', () => {
+    const issue = fs.readFileSync('__fixtures__/extra/issue.md', 'utf8')
+    const template = fs.readFileSync('__fixtures__/extra/template.yml', 'utf8')
+
+    const expected = JSON.parse(
+      fs.readFileSync('__fixtures__/extra/parsed-issue-template.json', 'utf8')
+    )
+
+    const result = parseIssue(issue, template)
+    expect(result).toEqual(expected)
+  })
+
+  it('Parses an issue with extra fields without a template (slugified)', () => {
+    const issue = fs.readFileSync('__fixtures__/extra/issue.md', 'utf8')
+
+    const expected = JSON.parse(
+      fs.readFileSync(
+        '__fixtures__/extra/parsed-issue-no-template.json',
+        'utf8'
+      )
     )
 
     const result = parseIssue(issue, undefined, { slugify: true })
