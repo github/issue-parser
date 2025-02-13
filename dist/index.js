@@ -7528,32 +7528,69 @@ function formatValue(input, field) {
  * @returns Parsed Issue Body
  */
 function parseIssue(issue, template, options) {
-    const parsedTemplate = parseTemplate(template);
-    const parsedIssue = {};
     // Match the sections of the issue body
     const regexp = /### *(?<key>.*?)\s*[\r\n]+(?<value>[\s\S]*?)(?=\n?###|\n?$)/g;
     const matches = issue.matchAll(regexp);
-    for (const match of matches) {
-        let value = match.groups?.value || undefined;
-        let key = match.groups?.key || '';
-        // Skip malformed sections
-        if (key === undefined || key === '' || value === undefined || value === '')
-            continue;
-        // If the slugify option is enabled, format the key.
-        if (options?.slugify)
-            key = formatKey(key);
-        // If the form template was provided, use the key from there instead of the
-        // heading in the issue body.
-        for (const [k, v] of Object.entries(parsedTemplate)) {
-            if (formatKey(v.label) === key || v.label === key) {
-                key = k;
-                break;
+    // Create an empty dictionary to store the parsed issue body.
+    const parsedIssue = {};
+    if (template) {
+        const parsedTemplate = parseTemplate(template);
+        // If the form template was provided, iterate over the matches and confirm
+        // there is a corresponding form field. If not, that match should be combined
+        // with the previous match.
+        const parsedMatches = [];
+        for (const match of matches) {
+            if (match.groups?.key === undefined ||
+                match.groups?.value === undefined ||
+                match.groups?.key === '' ||
+                match.groups?.value === '')
+                continue;
+            // If the key is in the template, add it to the parsed matches.
+            if (Object.values(parsedTemplate).some((field) => field.label === match.groups.key)) {
+                parsedMatches.push(match);
+                continue;
             }
+            // If this is the first match, we have to drop it because there is no
+            // previous match to append it to.
+            /* istanbul ignore if */
+            if (parsedMatches.length === 0)
+                continue;
+            // Append the full content to the most recent match.
+            parsedMatches[parsedMatches.length - 1].groups.value =
+                parsedMatches[parsedMatches.length - 1].groups.value + '\n' + match[0];
         }
-        // Format the value (returns null if the value couldn't be parsed)
-        value = formatValue(value, parsedTemplate[key]);
-        // Add to the parsed issue body
-        parsedIssue[key] = value;
+        for (const match of parsedMatches) {
+            let key = match.groups.key;
+            const value = match.groups.value;
+            // If the form template was provided, use the key from there instead of
+            // the heading in the issue body.
+            for (const [k, v] of Object.entries(parsedTemplate))
+                if (v.label === key) {
+                    key = k;
+                    break;
+                }
+            // Add to the parsed issue body
+            parsedIssue[key] = formatValue(value, parsedTemplate[key]);
+        }
+    }
+    else {
+        // No template was provided. Use the field header text as the key.
+        for (const match of matches) {
+            /* istanbul ignore if */
+            if (match.groups?.key === undefined ||
+                match.groups?.value === undefined ||
+                match.groups?.key === '' ||
+                match.groups?.value === '')
+                continue;
+            let key = match.groups.key;
+            const value = match.groups.value;
+            // If the slugify option is enabled, format the key. Otherwise, use the
+            // field header text as the key.
+            if (options?.slugify)
+                key = formatKey(key);
+            // Add to the parsed issue body
+            parsedIssue[key] = formatValue(value);
+        }
     }
     // Return the dictionary
     return parsedIssue;

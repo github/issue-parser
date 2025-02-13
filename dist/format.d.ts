@@ -15,4 +15,4 @@ export declare function formatKey(name: string): string;
 /**
  * Formats an input value to an appropriate type
  */
-export declare function formatValue(input: string, field: FormattedField): Checkboxes | string[] | string | undefined;
+export declare function formatValue(input: string, field?: FormattedField): Checkboxes | string[] | string | undefined;
