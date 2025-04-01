@@ -7,10 +7,9 @@ const config = {
   output: {
     esModule: true,
     file: 'dist/index.js',
-    format: 'es',
-    sourcemap: true
+    format: 'es'
   },
-  plugins: [typescript(), nodeResolve(), commonjs()]
+  plugins: [typescript(), nodeResolve({ preferBuiltins: true }), commonjs()]
 }
 
 export default config
