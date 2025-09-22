@@ -41,6 +41,6 @@ jobs:
 
       - name: Lint Codebase
         id: lint
-        uses: oxsecurity/megalinter/flavors/javascript@v8
+        uses: oxsecurity/megalinter/flavors/javascript@v9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
