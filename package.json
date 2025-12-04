@@ -44,7 +44,7 @@
     "yaml": "^2.6.0"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.2.2",
+    "@eslint/compat": "^2.0.0",
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-typescript": "^12.1.1",
