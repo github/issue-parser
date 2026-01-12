@@ -26,9 +26,7 @@ _No response_
 
 This is a description.
 
-It has multiple lines.
-
-It's pretty cool!
+It has multiple lines!
 
 ### The Notes About the Thing
 

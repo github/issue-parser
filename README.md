@@ -52,7 +52,7 @@ The resulting `issue` object will look like the following:
   shape: ['square'],
   sounds: ['re', 'mi'],
   topics: [],
-  description: "This is a description.\n\nIt has multiple lines.\n\nIt's pretty cool!",
+  description: 'This is a description.\n\nIt has multiple lines!',
   notes: '- Note\n- Another note\n- Lots of notes',
   code: 'const thing = new Thing()\nthing.doThing()',
   'code-string': 'thing.toString()',
