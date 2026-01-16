@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   release:
@@ -27,9 +28,6 @@ jobs:
         github.event.pull_request.head.repo.fork == false
       )
 
-    outputs:
-      tag: v${{ steps.tag.outputs.version }}
-
     steps:
       - name: Checkout
         id: checkout
@@ -41,8 +39,6 @@ jobs:
       - name: Setup Node.js
         id: setup-node
         uses: actions/setup-node@v6
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           cache: npm
           node-version-file: .node-version
@@ -66,10 +62,7 @@ jobs:
 
       - name: Publish
         id: publish
-        env:
-          NPM_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
-          npm whoami
           npm publish --ignore-scripts --access public
 
       - name: Create Release
