@@ -112,6 +112,15 @@ describe('parseIssue()', () => {
     expect(result).toEqual(expected)
   })
 
+  it('Parses an issue with an upload field', () => {
+    const issue = `### Upload relevant files\nhttps://github.com/user-attachments/assets/example\n`
+    const template = `name: Bug report\nbody:\n  - type: upload\n    id: screenshots\n    attributes:\n      label: Upload relevant files\n      description: Drag and drop relevant screenshots or logs.\n    validations:\n      required: false\n      accept: .png,.txt`
+
+    expect(parseIssue(issue, template)).toEqual({
+      screenshots: 'https://github.com/user-attachments/assets/example'
+    })
+  })
+
   it('Parses an issue with extra fields without a template (slugified)', () => {
     const issue = fs.readFileSync('__fixtures__/extra/issue.md', 'utf8')
 
@@ -152,6 +161,18 @@ describe('parseTemplate()', () => {
       fs.readFileSync('__fixtures__/no-ids/template.yml', 'utf8')
     )
     expect(result).toEqual(expected)
+  })
+
+  it('Parses a template with upload fields', () => {
+    expect(
+      parseTemplate(`name: Bug report\nbody:\n  - type: upload\n    id: screenshots\n    attributes:\n      label: Upload relevant files\n      description: Drag and drop relevant screenshots or logs.\n    validations:\n      required: false\n      accept: .png,.txt`)
+    ).toEqual({
+      screenshots: {
+        label: 'Upload relevant files',
+        type: 'upload',
+        required: false
+      }
+    })
   })
 
   it('Throws if the template is not a valid YAML object', () => {

@@ -3,11 +3,12 @@ export type IssueFormTemplate = {
   name: string
   description: string
   body: (
-    | MarkdownField
-    | TextareaField
-    | InputField
-    | DropdownField
-    | CheckboxesField
+  | MarkdownField
+  | TextareaField
+  | InputField
+  | DropdownField
+  | CheckboxesField
+  | UploadField
   )[]
   assignees?: string[]
   labels?: string[]
@@ -88,11 +89,25 @@ export interface CheckboxesField {
   }
 }
 
+/** GitHub Issue Forms Upload Field */
+export interface UploadField {
+  type: 'upload'
+  id?: string
+  attributes: {
+    label: string
+    description?: string
+  }
+  validations?: {
+    required?: boolean
+    accept?: string
+  }
+}
+
 /** Formatted GitHub Issue Forms Field */
 export interface FormattedField {
   id?: string
   label: string
-  type: 'markdown' | 'textarea' | 'input' | 'dropdown' | 'checkboxes'
+  type: 'markdown' | 'textarea' | 'input' | 'dropdown' | 'checkboxes' | 'upload'
   required: boolean
   multiple?: boolean
   options?: (
