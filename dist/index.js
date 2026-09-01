@@ -7452,6 +7452,8 @@ var FieldType;
     FieldType["MARKDOWN"] = "markdown";
     /** Textarea Field */
     FieldType["TEXTAREA"] = "textarea";
+    /** Upload Field */
+    FieldType["UPLOAD"] = "upload";
 })(FieldType || (FieldType = {}));
 /** Empty Issue Form Responses */
 var EmptyResponse;
@@ -7503,6 +7505,7 @@ function formatValue(input, field) {
     switch (field.type) {
         case FieldType.INPUT:
         case FieldType.TEXTAREA:
+        case FieldType.UPLOAD:
             // Return empty string if no response was provided. Otherwise, return the
             // formatted response.
             return isEmptyResponse(value) ? undefined : value;

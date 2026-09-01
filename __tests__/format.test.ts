@@ -145,4 +145,17 @@ c`
       })
     ).toBe(value)
   })
+
+  it('Handles upload fields', () => {
+    const value = `https://github.com/user-attachments/assets/example`
+
+    expect(
+      formatValue(value, {
+        label: 'Upload Test',
+        type: 'upload',
+        required: false,
+        accept: '.png,.txt'
+      })
+    ).toBe(value)
+  })
 })
