@@ -9,7 +9,9 @@ export enum FieldType {
   /** Markdown Field */
   MARKDOWN = 'markdown',
   /** Textarea Field */
-  TEXTAREA = 'textarea'
+  TEXTAREA = 'textarea',
+  /** Upload Field */
+  UPLOAD = 'upload'
 }
 
 /** Empty Issue Form Responses */
